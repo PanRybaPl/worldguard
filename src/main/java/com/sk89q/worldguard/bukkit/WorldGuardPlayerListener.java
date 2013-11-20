@@ -182,7 +182,7 @@ public class WorldGuardPlayerListener implements Listener {
 
         boolean entryAllowed = set.allows(DefaultFlag.ENTRY, localPlayer);
         if (!hasRemoteBypass && (!entryAllowed /*|| regionFull*/)) {
-            String message = /*maxPlayerMessage != null ? maxPlayerMessage :*/ "You are not permitted to enter this area.";
+            String message = /*maxPlayerMessage != null ? maxPlayerMessage :*/ "Nie mozesz tutaj wejsc.";
 
             player.sendMessage(ChatColor.DARK_RED + message);
             return true;
@@ -197,7 +197,7 @@ public class WorldGuardPlayerListener implements Listener {
 
         boolean exitAllowed = set.allows(DefaultFlag.EXIT, localPlayer);
         if (!hasBypass && exitAllowed && !state.lastExitAllowed) {
-            player.sendMessage(ChatColor.DARK_RED + "You are not permitted to leave this area.");
+            player.sendMessage(ChatColor.DARK_RED + "Nie mozesz stad wyjsc.");
             return true;
         }
 
@@ -377,7 +377,7 @@ public class WorldGuardPlayerListener implements Listener {
         WorldConfiguration wcfg = plugin.getGlobalStateManager().get(player.getWorld());
         if (wcfg.useRegions) {
             if (!plugin.getGlobalRegionManager().allows(DefaultFlag.SEND_CHAT, player.getLocation())) {
-                player.sendMessage(ChatColor.RED + "You don't have permission to chat in this region!");
+                player.sendMessage(ChatColor.RED + "Nie mozesz tutaj rozmawiac!");
                 event.setCancelled(true);
                 return;
             }
@@ -752,7 +752,6 @@ public class WorldGuardPlayerListener implements Listener {
                         cancel = true;
                     }
                     if (cancel) {
-                        player.sendMessage(ChatColor.DARK_RED + "You don't have permission for this area.");
                         event.setCancelled(true);
                         return;
                     }
@@ -784,7 +783,6 @@ public class WorldGuardPlayerListener implements Listener {
                         && !mgr.getApplicableRegions(headLoc).canBuild(localPlayer)) {
                     // note that normal block placement is handled later, this is just a workaround
                     // for the location of the head block of the bed
-                    player.sendMessage(ChatColor.DARK_RED + "You don't have permission for this area.");
                     event.setCancelled(true);
                     return;
                 }
@@ -802,7 +800,6 @@ public class WorldGuardPlayerListener implements Listener {
                         && !placedInSet.canBuild(localPlayer)) {
                     // note that normal block placement is handled later, this is just a workaround
                     // for the location of the top block of the door
-                    player.sendMessage(ChatColor.DARK_RED + "You don't have permission for this area.");
                     event.setCancelled(true);
                     return;
                 }
@@ -814,7 +811,7 @@ public class WorldGuardPlayerListener implements Listener {
                         && !placedInSet.allows(DefaultFlag.LIGHTER)) {
                     event.setCancelled(true);
                     event.setUseItemInHand(Result.DENY);
-                    player.sendMessage(ChatColor.DARK_RED + "You're not allowed to use that here.");
+                    player.sendMessage(ChatColor.DARK_RED + "Nie mozesz uzywac tego w tym miejscu.");
                     return;
                 }
             }
@@ -824,7 +821,7 @@ public class WorldGuardPlayerListener implements Listener {
                         && !set.canBuild(localPlayer)) {
                     event.setCancelled(true);
                     event.setUseItemInHand(Result.DENY);
-                    player.sendMessage(ChatColor.DARK_RED + "You're not allowed to use that here.");
+                    player.sendMessage(ChatColor.DARK_RED + "Nie mozesz uzywac tego w tym miejscu.");
                     return;
                 }
             }
@@ -846,7 +843,7 @@ public class WorldGuardPlayerListener implements Listener {
                             && !set.canBuild(localPlayer)) {
                         event.setCancelled(true);
                         event.setUseItemInHand(Result.DENY);
-                        player.sendMessage(ChatColor.DARK_RED + "You're not allowed to use that here.");
+                        player.sendMessage(ChatColor.DARK_RED + "Nie mozesz uzywac tego w tym miejscu.");
                         return;
                     }
                 } else if (item.getData().getData() == 3) { // cocoa beans
@@ -856,7 +853,7 @@ public class WorldGuardPlayerListener implements Listener {
                         if (!(event.getBlockFace() == BlockFace.DOWN || event.getBlockFace() == BlockFace.UP)) {
                             event.setCancelled(true);
                             event.setUseItemInHand(Result.DENY);
-                            player.sendMessage(ChatColor.DARK_RED + "You're not allowed to plant that here.");
+                            player.sendMessage(ChatColor.DARK_RED + "Nie mozesz sadzic tutaj roslin.");
                             return;
                         }
                     }
@@ -876,7 +873,7 @@ public class WorldGuardPlayerListener implements Listener {
                             && !set.canBuild(localPlayer)) {
                         event.setUseItemInHand(Result.DENY);
                         event.setCancelled(true);
-                        player.sendMessage(ChatColor.DARK_RED + "You're not allowed to plant that here.");
+                        player.sendMessage(ChatColor.DARK_RED + "Nie mozesz sadzic tutaj roslin.");
                         return;
                     }
                 }
@@ -885,7 +882,7 @@ public class WorldGuardPlayerListener implements Listener {
             if (type == BlockID.BED) {
                 if (!plugin.getGlobalRegionManager().hasBypass(player, world)
                         && !set.allows(DefaultFlag.SLEEP, localPlayer)) {
-                    player.sendMessage(ChatColor.DARK_RED + "You're not allowed to use that bed.");
+                    player.sendMessage(ChatColor.DARK_RED + "Nie mozesz spac w tym lozku.");
                     event.setUseInteractedBlock(Result.DENY);
                     event.setCancelled(true);
                     return;
@@ -904,7 +901,7 @@ public class WorldGuardPlayerListener implements Listener {
                 if (!plugin.getGlobalRegionManager().hasBypass(player, world)
                         && !set.canBuild(localPlayer)
                         && !set.allows(DefaultFlag.CHEST_ACCESS, localPlayer)) {
-                    player.sendMessage(ChatColor.DARK_RED + "You don't have permission to open that in this area.");
+                    player.sendMessage(ChatColor.DARK_RED + "Nie mozesz tego tutaj otworzyc.");
                     event.setUseInteractedBlock(Result.DENY);
                     event.setCancelled(true);
                     return;
@@ -946,7 +943,7 @@ public class WorldGuardPlayerListener implements Listener {
                 if (!plugin.getGlobalRegionManager().hasBypass(player, world)
                         && !set.canBuild(localPlayer)
                         && !set.allows(DefaultFlag.USE, localPlayer)) {
-                    player.sendMessage(ChatColor.DARK_RED + "You don't have permission to use that in this area.");
+                    player.sendMessage(ChatColor.DARK_RED + "Nie mozesz tego tutaj uzywac.");
                     event.setUseInteractedBlock(Result.DENY);
                     event.setCancelled(true);
                     return;
@@ -960,7 +957,7 @@ public class WorldGuardPlayerListener implements Listener {
                 if (!plugin.getGlobalRegionManager().hasBypass(player, world)
                         && !set.canBuild(localPlayer)) {
                     // using build and not use because it can potentially damage a circuit and use is more general-purposed
-                    player.sendMessage(ChatColor.DARK_RED + "You don't have permission to use that in this area.");
+                    player.sendMessage(ChatColor.DARK_RED + "Nie mozesz tego tutaj uzywac.");
                     event.setUseInteractedBlock(Result.DENY);
                     event.setCancelled(true);
                     return;
@@ -987,7 +984,7 @@ public class WorldGuardPlayerListener implements Listener {
                 if (!plugin.getGlobalRegionManager().hasBypass(player, world)
                         && !placedInSet.canBuild(localPlayer)
                         && !placedInSet.allows(DefaultFlag.PLACE_VEHICLE, localPlayer)) {
-                    player.sendMessage(ChatColor.DARK_RED + "You don't have permission to place vehicles here.");
+                    player.sendMessage(ChatColor.DARK_RED + "Nie mozesz umieszczac tutaj pojazdow.");
                     event.setUseItemInHand(Result.DENY);
                     event.setCancelled(true);
                     return;
@@ -998,7 +995,7 @@ public class WorldGuardPlayerListener implements Listener {
                 if (!plugin.getGlobalRegionManager().hasBypass(player, world)
                         && !placedInSet.canBuild(localPlayer)
                         && !placedInSet.allows(DefaultFlag.PLACE_VEHICLE, localPlayer)) {
-                    player.sendMessage(ChatColor.DARK_RED + "You don't have permission to place vehicles here.");
+                    player.sendMessage(ChatColor.DARK_RED + "Nie mozesz umieszczac tutaj pojazdow.");
                     event.setUseItemInHand(Result.DENY);
                     event.setCancelled(true);
                     return;
@@ -1060,7 +1057,7 @@ public class WorldGuardPlayerListener implements Listener {
                 || type == BlockID.DROPPER)) {
 
             if (wcfg.isChestProtected(block, player)) {
-                player.sendMessage(ChatColor.DARK_RED + "The chest is protected.");
+                player.sendMessage(ChatColor.DARK_RED + "Ta skrzynia jest chroniona.");
                 event.setUseInteractedBlock(Result.DENY);
                 event.setCancelled(true);
                 return;
@@ -1280,7 +1277,6 @@ public class WorldGuardPlayerListener implements Listener {
         if (!plugin.getGlobalRegionManager().canBuild(
                 player, event.getBlockClicked().getRelative(event.getBlockFace()))
                 && !(event.getItemStack().getTypeId() == ItemID.MILK_BUCKET)) {
-            player.sendMessage(ChatColor.DARK_RED + "You don't have permission for this area.");
             event.setCancelled(true);
             return;
         }
@@ -1315,7 +1311,6 @@ public class WorldGuardPlayerListener implements Listener {
 
         if (!plugin.getGlobalRegionManager().canBuild(
                 player, event.getBlockClicked().getRelative(event.getBlockFace()))) {
-            player.sendMessage(ChatColor.DARK_RED + "You don't have permission for this area.");
             event.setCancelled(true);
             return;
         }

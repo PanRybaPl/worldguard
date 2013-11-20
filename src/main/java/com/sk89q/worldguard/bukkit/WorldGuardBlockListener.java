@@ -149,7 +149,6 @@ public class WorldGuardBlockListener implements Listener {
 
         if (!plugin.getGlobalRegionManager().canBuild(player, event.getBlock())
          || !plugin.getGlobalRegionManager().canConstruct(player, event.getBlock())) {
-            player.sendMessage(ChatColor.DARK_RED + "You don't have permission for this area.");
             event.setCancelled(true);
             return;
         }
@@ -173,7 +172,7 @@ public class WorldGuardBlockListener implements Listener {
         }
 
         if (wcfg.isChestProtected(event.getBlock(), player)) {
-            player.sendMessage(ChatColor.DARK_RED + "The chest is protected.");
+            player.sendMessage(ChatColor.DARK_RED + "Ta skrzynia jest chroniona.");
             event.setCancelled(true);
             return;
         }
@@ -507,7 +506,6 @@ public class WorldGuardBlockListener implements Listener {
             final Location location = blockPlaced.getLocation();
             if (!plugin.getGlobalRegionManager().canBuild(player, location)
              || !plugin.getGlobalRegionManager().canConstruct(player, location)) {
-                player.sendMessage(ChatColor.DARK_RED + "You don't have permission for this area.");
                 event.setCancelled(true);
                 return;
             }
@@ -524,7 +522,7 @@ public class WorldGuardBlockListener implements Listener {
 
         if (wcfg.signChestProtection && wcfg.getChestProtection().isChest(blockPlaced.getTypeId())) {
             if (wcfg.isAdjacentChestProtected(event.getBlock(), player)) {
-                player.sendMessage(ChatColor.DARK_RED + "This spot is for a chest that you don't have permission for.");
+                player.sendMessage(ChatColor.DARK_RED + "To jest miejsce skrzyni do ktorej nie masz dostepu.");
                 event.setCancelled(true);
                 return;
             }
@@ -589,7 +587,7 @@ public class WorldGuardBlockListener implements Listener {
         if (wcfg.signChestProtection) {
             if (event.getLine(0).equalsIgnoreCase("[Lock]")) {
                 if (wcfg.isChestProtectedPlacement(event.getBlock(), player)) {
-                    player.sendMessage(ChatColor.DARK_RED + "You do not own the adjacent chest.");
+                    player.sendMessage(ChatColor.DARK_RED + "Nie jestes wlascicielem sasiadujacej skrzyni.");
                     event.getBlock().breakNaturally();
                     event.setCancelled(true);
                     return;
@@ -641,7 +639,6 @@ public class WorldGuardBlockListener implements Listener {
         }
 
         if (!plugin.getGlobalRegionManager().canBuild(player, event.getBlock())) {
-            player.sendMessage(ChatColor.DARK_RED + "You don't have permission for this area.");
             event.setCancelled(true);
             return;
         }
