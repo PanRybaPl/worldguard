@@ -25,6 +25,7 @@ import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.BlockVector2D;
 import com.sk89q.worldedit.Vector;
 import com.sk89q.worldguard.protection.UnsupportedIntersectionException;
+import org.bukkit.Bukkit;
 
 /**
  * Represents a cuboid region that can be protected.
@@ -147,8 +148,6 @@ public class ProtectedCuboidRegion extends ProtectedRegion {
                     intersectingRegions.add(region);
                     continue;
                 }
-            } else {
-                throw new UnsupportedOperationException("Not supported yet.");
             }
         }
         return intersectingRegions;

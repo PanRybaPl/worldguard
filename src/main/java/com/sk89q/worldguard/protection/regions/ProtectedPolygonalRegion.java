@@ -138,8 +138,6 @@ public class ProtectedPolygonalRegion extends ProtectedRegion {
                     intersectingRegions.add(region);
                     continue;
                 }
-            } else {
-                throw new UnsupportedOperationException("Not supported yet.");
             }
         }
         return intersectingRegions;

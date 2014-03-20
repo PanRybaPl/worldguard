@@ -30,6 +30,8 @@ import org.khelekore.prtree.PRTree;
 import org.khelekore.prtree.SimpleMBR;
 
 import java.util.*;
+import org.apache.log4j.Level;
+import org.bukkit.Bukkit;
 
 public class PRTreeRegionManager extends RegionManager {
 
